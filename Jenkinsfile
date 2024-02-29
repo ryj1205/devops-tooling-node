@@ -8,10 +8,14 @@ pipeline {
             }
         }
         stage('build') {
-            sh 'docker build -t nodejs-project:${BUILD_NUMBER} .'
+            steps {
+                sh 'docker build -t nodejs-project:${BUILD_NUMBER} .'
+            }
         }
         stage('run') {
-            sh 'docker run -p 80:5000 --name nodejs-project -d nodejs-project:${BUILD_NUMBER}'
+            steps {
+                sh 'docker run -p 80:5000 --name nodejs-project -d nodejs-project:${BUILD_NUMBER}'
+            }
         }
     }
 }
